@@ -1,24 +1,29 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up()
+    {
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('phone');
+            $table->timestamps();
+        });
+    }
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
-
-Route::prefix('c')->group(function () {
-    Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
-    Route::get('/create', [ContactController::class, 'create'])->middleware('auth')->name('contacts.create');
-    Route::post('/', [ContactController::class, 'store'])->middleware('auth')->name('contacts.store');
-});
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('contacts');
+    }
+};
