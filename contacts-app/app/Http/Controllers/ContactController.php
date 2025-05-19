@@ -20,7 +20,7 @@ $request->validate([
 'name' => 'required|string',
 'phone' => 'required|string',
 ]);
-Contact::create($request->only('name', 'phone'));
+Contact::create($request->only('name', 'phone',));
 return redirect()->route('contacts.index')->with('success', 'Contact
 added successfully!');
 }
