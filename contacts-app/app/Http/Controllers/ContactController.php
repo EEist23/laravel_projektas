@@ -16,9 +16,10 @@ return view('contacts.create');
 }
 public function store(Request $request)
 {
-$request->validate([
-'name' => 'required|string',
-'phone' => 'required|string',
+$contact = Contact::create([
+    'name' => $request->name,
+    'phone' => $request->phone,
+    'email' => $request->email,
 ]);
 Contact::create($request->only('name', 'phone',));
 return redirect()->route('contacts.index')->with('success', 'Contact
