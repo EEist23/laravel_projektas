@@ -64,6 +64,5 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Studentas buvo pažymėtas kaip ištrintas.');
     }
-
 }
 
