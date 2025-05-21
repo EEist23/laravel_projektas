@@ -44,3 +44,7 @@
 
         </tbody>
     </table>
+
+    {{ $students->links() }} <!-- Pagination -->
+    
+@endsection
