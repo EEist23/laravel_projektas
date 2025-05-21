@@ -4,23 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentsTable extends Migration
+return new class extends Migration
 {
-    public function up()
+
+    public function up(): void
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('vardas');
-            $table->string('pavarde');
-            $table->date('gim_data');
-            $table->string('telefonas');
-            $table->text('adresas');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('address');
+            $table->string('phone');
             $table->timestamps();
+
         });
     }
-    
-    public function down()
+
+    public function down(): void
     {
         Schema::dropIfExists('students');
     }
-}
+};
