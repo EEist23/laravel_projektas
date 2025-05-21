@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 
+
 @section('content')
 <div class="container mt-4">
     <div class="card">
@@ -10,6 +11,7 @@
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
+
 
             <table class="table table-striped table-bordered table-hover">
                 <thead class="thead-dark">
@@ -36,6 +38,7 @@
                                     <button type="submit" class="btn btn-success btn-sm">Atkurti</button>
                                 </form>
 
+
                                 <form action="{{ route('students.forceDelete', $student->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
@@ -47,10 +50,19 @@
                 </tbody>
             </table>
 
+
             {{ $students->links() }}
+
 
             <a href="{{ route('students.index') }}" class="btn btn-primary mt-3">Grįžti į studentų sąrašą</a>
         </div>
     </div>
 </div>
 @endsection
+
+
+
+
+
+
+
