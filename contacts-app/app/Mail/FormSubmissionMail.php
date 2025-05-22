@@ -2,9 +2,7 @@
 
 namespace App\Mail;
 
-namespace App\Mail;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -21,9 +19,7 @@ class FormSubmissionMail extends Mailable
 
     public function build()
     {
-        return $this->from(config('mail.from.address'))
-                    ->subject('Formos užpildymo kopija')
-                    ->view('emails.form_submission'); // Blade šablonas
+        return $this->subject('Nauja kontaktų forma')
+                    ->view('emails.form-submission');
     }
 }
-
