@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use App\Models\Student;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class PdfController extends Controller
+class PDFController extends Controller
 {
-    public function generatePdf()
+    public function generatePDF()
     {
-        $students = Student::with('city')->get();
-        $pdf = PDF::loadView('students.pdf', compact('students'));
-        return $pdf->download('studentu_sarasas.pdf');
+        $data = [
+            'title' => 'PDF Dokumento Pavadinimas',
+            'date' => date('Y-m-d'),
+            'content' => 'Tai yra sugeneruotas PDF dokumentas Laravel 10+ versijoje.'
+        ];
+
+        $pdf = Pdf::loadView('pdf.document', $data);
+        return $pdf->download('dokumentas.pdf'); // arba stream() jei norite rodyti naršyklėje
     }
 }
+
